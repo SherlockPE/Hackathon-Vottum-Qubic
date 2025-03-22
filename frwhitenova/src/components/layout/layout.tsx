@@ -6,7 +6,7 @@ interface LayoutProps {
 }
 
 export function Layout({ children }: LayoutProps) {
-  return (
+  return ( 
     <div className="flex flex-col min-h-screen bg-background text-text-primary">
       <Header />
       <main className="flex-1 py-10 px-4 flex justify-center">
@@ -17,10 +17,10 @@ export function Layout({ children }: LayoutProps) {
           <div className="flex items-center gap-2 mb-4 md:mb-0">
             <img
               src="https://cryptologos.cc/logos/uniswap-uni-logo.png"
-              alt="Uniswap Logo"
+              alt="Logo"
               className="h-6 w-6"
             />
-            <span>© 2025 Uniswap Clone</span>
+            <span>© 2025 WhiteNova</span>
           </div>
           <div className="flex items-center gap-4">
             <a href="#" className="hover:text-text-primary">Terms</a>

@@ -23,10 +23,10 @@ export function Header() {
         <div className="flex items-center gap-2">
           <img
             src="https://cryptologos.cc/logos/uniswap-uni-logo.png"
-            alt="Uniswap Logo"
+            alt="Logo"
             className="h-10 w-10"
           />
-          <span className="text-xl font-semibold text-text-primary">Uniswap</span>
+          <span className="text-xl font-semibold text-text-primary">WhiteNova</span>
         </div>
 
         <nav className="hidden md:flex items-center gap-1">
