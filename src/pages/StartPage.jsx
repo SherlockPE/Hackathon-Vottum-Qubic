@@ -11,7 +11,7 @@ function StartPage() {
     if (!connected) {
         return (
             <div className="mt-20 flex flex-col items-center">
-                <h2 className="text-2xl text-white mb-20 mt-20">Welcome to HM25 - Hackathon Madrid 2025 Demo DApp</h2>
+                <h2 className="text-2xl text-white mb-20 mt-20">JAJ</h2>
                 <p className="text-gray-300 mb-4 mt-4 ml-6 mr-4">
                     You are not connected to a wallet. Please connect to proceed.
                 </p>
@@ -29,7 +29,7 @@ function StartPage() {
 
     return (
         <div className="mt-20 px-10 flex flex-col items-center">
-            <h2 className="text-2xl text-white mb-6 mt-6">HM25 Actions</h2>
+            <h2 className="text-2xl text-white mb-6 mt-6">HM25 Aaaaactions 42</h2>
             <div className="flex gap-4">
                 <button
                     className="bg-primary-40 p-3 text-black rounded disabled:bg-gray-400 disabled:cursor-not-allowed"
