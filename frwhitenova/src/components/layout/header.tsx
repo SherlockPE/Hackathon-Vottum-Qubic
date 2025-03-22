@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "../ui/button";
 import { cn } from "../../lib/utils";
+import logo from "../../assets/logo.png"; // Importa la imagen correctamente
 
 export function Header() {
   const navigate = useNavigate();
@@ -22,8 +23,8 @@ export function Header() {
       <div className="flex items-center gap-8">
         <div className="flex items-center gap-2">
           <img
-            src="https://cryptologos.cc/logos/uniswap-uni-logo.png"
-            alt="Logo"
+            src={logo} 
+            alt="logo"
             className="h-10 w-10"
           />
           <span className="text-xl font-semibold text-text-primary">WhiteNova</span>

@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Header } from "./header";
+import logo from "../../assets/logo.png";
 
 interface LayoutProps {
   children: ReactNode;
@@ -16,8 +17,8 @@ export function Layout({ children }: LayoutProps) {
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between text-text-secondary text-sm">
           <div className="flex items-center gap-2 mb-4 md:mb-0">
             <img
-              src="https://cryptologos.cc/logos/uniswap-uni-logo.png"
-              alt="Logo"
+              src={logo}
+              alt="logo"
               className="h-6 w-6"
             />
             <span>© 2025 WhiteNova</span>
