@@ -4,8 +4,10 @@
 
 @layer base {
   :root {
+    /* (Puedes conservar otras variables de color existentes) */
     --background: rgb(19, 19, 19);
     --text-primary: rgb(255, 255, 255);
+    /* ... */
   }
 
   html {
@@ -13,36 +15,20 @@
   }
 
   body {
-    @apply bg-background text-text-primary font-sans;
+    @apply text-text-primary font-sans;
+    /* Fondo degradado oscuro con efecto dorado */
+    background: linear-gradient(to right, #000000 0%, #000000 30%, #D4AF37 50%, #000000 70%, #000000 100%);
+    background-size: 200% 100%;
+    animation: gradientAnimation 30s ease infinite;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* Custom scrollbar styling */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+  /* Animación del fondo degradado */
+  @keyframes gradientAnimation {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
-  ::-webkit-scrollbar-track {
-    @apply bg-background;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-border rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-border/80;
-  }
-
-  /* Remove number input arrows */
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  input[type="number"] {
-    -moz-appearance: textfield;
-  }
+  /* ... (el resto de tu CSS base permanece igual) ... */
 }

@@ -1,6 +1,8 @@
 import * as React from "react";
+import { useState } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cn } from "../../lib/utils";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -10,39 +12,49 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      className,
-      variant = "default",
-      size = "default",
-      asChild = false,
-      ...props
-    },
-    ref
-  ) => {
+  ({ className, variant = "default", size = "default", asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
+    const [selectedItem, setSelectedItem] = useState("Select Crypto");
+
+    const variantClasses = {
+      default: "bg-blue-500 text-black hover:bg-blue-600",
+      secondary: "bg-gray-100 text-black hover:bg-gray-200",
+      outline: "border border-gray-300 text-black bg-transparent hover:bg-gray-100",
+      ghost: "bg-transparent text-black hover:bg-gray-100",
+      link: "text-black underline-offset-4 hover:underline",
+      pink: "bg-pink-500 text-black hover:bg-pink-600"
+    };
+
+    const sizeClasses = {
+      default: "h-9 px-4 py-2",
+      sm: "h-8 rounded-md px-3 text-xs",
+      lg: "h-12 rounded-lg px-8",
+      icon: "h-9 w-9"
+    };
+
     return (
-      <Comp
-        className={cn(
-          "inline-flex items-center justify-center whitespace-nowrap rounded font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-          {
-            "bg-primary text-white hover:bg-primary-hover": variant === "default" || variant === "pink",
-            "bg-primary/10 text-primary hover:bg-primary/20": variant === "secondary",
-            "border border-border bg-transparent hover:bg-background-lighter": variant === "outline",
-            "bg-transparent text-text-secondary hover:bg-background-lighter hover:text-text-primary": variant === "ghost",
-            "text-primary underline-offset-4 hover:underline": variant === "link",
-          },
-          {
-            "h-9 px-4 py-2": size === "default",
-            "h-8 rounded-md px-3 text-xs": size === "sm",
-            "h-12 rounded-lg px-8": size === "lg",
-            "h-9 w-9": size === "icon",
-          },
-          className
-        )}
-        ref={ref}
-        {...props}
-      />
+      <DropdownMenu.Root>
+        <DropdownMenu.Trigger asChild>
+          <Comp
+            className={cn(
+              "inline-flex items-center justify-center whitespace-nowrap rounded font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+              variantClasses[variant],
+              sizeClasses[size],
+              className
+            )}
+            ref={ref}
+            {...props}
+          >
+            {selectedItem}
+          </Comp>
+        </DropdownMenu.Trigger>
+        <DropdownMenu.Content className="bg-white rounded shadow-md p-2">
+          <DropdownMenu.Item className="p-2 text-black hover:bg-gray-100 cursor-pointer" onSelect={() => setSelectedItem("Blockchain")}>Blockchain</DropdownMenu.Item>
+          <DropdownMenu.Item className="p-2 text-black hover:bg-gray-100 cursor-pointer" onSelect={() => setSelectedItem("Ethereum")}>Ethereum</DropdownMenu.Item>
+          <DropdownMenu.Item className="p-2 text-black hover:bg-gray-100 cursor-pointer" onSelect={() => setSelectedItem("Bitcoin")}>Bitcoin</DropdownMenu.Item>
+          <DropdownMenu.Item className="p-2 text-black hover:bg-gray-100 cursor-pointer" onSelect={() => setSelectedItem("Litecoin")}>Litecoin</DropdownMenu.Item>
+        </DropdownMenu.Content>
+      </DropdownMenu.Root>
     );
   }
 );

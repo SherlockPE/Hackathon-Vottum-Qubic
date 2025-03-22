@@ -19,12 +19,12 @@ export function TokenSelector({
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredTokens = TOKENS.filter((token) => {
-    // Filter out the other selected token to prevent selecting the same token twice
+    // Filtra el otro token seleccionado para evitar seleccionar el mismo token dos veces
     if (otherSelectedToken && token.symbol === otherSelectedToken.symbol) {
       return false;
     }
 
-    // Filter based on search query
+    // Filtra en función de la consulta de búsqueda
     const query = searchQuery.toLowerCase();
     return (
       token.name.toLowerCase().includes(query) ||
