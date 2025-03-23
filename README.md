@@ -1,141 +1,111 @@
-# Hackathon-Vottum-Qubic
+# Getting Started with Qubic Hackathon Madrid 2025 Demo App
 
-### 🔹 **1. Introducción**
 
-**IOTA X** será un DEX de nueva generación sin comisiones, basado en IOTA Qubic e impulsado por una IA central. Esta IA tomará decisiones de arbitraje inteligentes en tiempo real, optimizando intercambios peer-to-peer sin intermediarios. El objetivo es un mercado más accesible, eficiente y autónomo.
+## Getting started
 
----
+In the project directory, you can run:
 
-### 🔹 **2. Arquitectura Técnica General**
+### `pnpm install`
 
-- Basado en IOTA + Qubic, con una arquitectura 100% descentralizada y sin custodia.
-    
-- **Nodos computor** ejecutan los contratos inteligentes y alojan la IA.
-    
-- Contratos inteligentes no custodiales con _escrow atómico_.
-    
-- Oráculos integrados proporcionan datos externos en tiempo real.
-    
-- Condiciones ejecutadas automáticamente en la Tangle.
-    
-- Transacciones sin comisiones (feeless), aptas para micro pagos.
-    
-- Sistema seguro, transparente y escalable gracias a Qubic.
-    
+Install the web app's dependencies
 
----
+### `pnpm start`
 
-### 🔹 **3. Interfaz de Usuario y Experiencia**
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-- **Dos modos de uso**:
-    
-    - _Modo Manual Asistido_: reglas personalizadas con ayuda de la IA.
-        
-    - _Modo Automático_: la IA gestiona la estrategia con base en objetivos definidos por el usuario.
-        
-- UI intuitiva, disponible en web y móvil.
-    
-- Panel de control con indicadores, historial de operaciones, configuración de perfil con DID, notificaciones y mercado P2P.
-    
-- Narrativa centrada en un “asistente virtual” que explica sus decisiones, empoderando al usuario.
-    
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
----
+### `pnpm run build`
 
-### 🔹 **4. Pools de Liquidez Dinámicos gestionados por IA**
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-- **Liquidez 4.0**: IA gestiona los pools dinámicamente.
-    
-- Asigna liquidez donde más se necesita según demanda y volatilidad.
-    
-- Predice precios y mitiga _impermanent loss_.
-    
-- Rebalancea precios automáticamente mediante arbitraje interno.
-    
-- Aprende colectivamente del comportamiento de usuarios.
-    
-- Transparencia total para los proveedores de liquidez + recompensas extra por permitir gestión algorítmica.
-    
+## Prepare Your Web App for Production
 
----
+### `ssh user@your_server_ip`
+Log in to your server via SSH.
+Replace user with your SSH `username` and `your_server_ip` with your server’s IP address.
 
-### 🔹 **5. Mecanismos de Monetización**
+### Install Nginx
 
-- **Comisiones inteligentes**: dinámicas y basadas en rendimiento.
-    
-- **Token nativo** con utilidad para recompensas y gobernanza, con modelo deflacionario.
-    
-- **Suscripción premium** para traders avanzados.
-    
-- **Licencias White-label y APIs** para terceros.
-    
-- **Listados de tokens** con curación automatizada por IA.
-    
-- Múltiples fuentes de ingresos + bajos costos operativos = sostenibilidad a largo plazo.
-    
+```bash
+sudo apt update
+sudo apt install nginx
+```
 
----
+### Start and enable Nginx
 
-### 🔹 **6. Seguridad, Gobernanza y Sostenibilidad**
+```bash
+sudo systemctl start nginx
+sudo systemctl enable nginx
+```
 
-- **Código abierto y auditable**, con auditorías externas.
-    
-- Seguridad reforzada con multi-firma, enclaves seguros, oráculos redundantes y cortafuegos algorítmicos.
-    
-- Gobernanza descentralizada basada en DAO y token de gobernanza.
-    
-- Hoja de ruta para expandirse a activos tokenizados reales.
-    
-- Ecosistema autosuficiente operado por nodos de la comunidad.
-    
-- Enfoque en impacto social y mejora continua.
-    
+### Transfer Your Files to the Server
 
----
+In your server, create the directory that your web app will be stored to
+```bash
+sudo mkdir -p /var/www/myapp
+sudo chown -R www-data:www-data /var/www/myapp
+sudo chmod -R 755 /var/www/myapp
+```
 
-### 🔹 **7. Ventajas Competitivas y Diferenciación**
+In your local machine, use either `scp` or `rsync` to securely transfer your app’s files to the server.
 
-- **Sin comisiones y con microtransacciones viables**, accesibles a todos.
-    
-- **IA integrada de forma nativa**, no como herramienta externa.
-    
-- **Escalabilidad nativa** gracias al diseño de IOTA (paralelismo).
-    
-- **Interoperabilidad** con Ethereum y otras cadenas.
-    
-- **Reputación e identidad on-chain (DID)** para generar confianza.
-    
-- **Narrativa y propósito diferenciador**: inclusión financiera y resolución de problemas reales.
-    
+```bash
+scp -r build/* user@your_server_ip:/var/www/myapp
+```
 
----
+### Configure nginx
 
-### 🔹 **8. Integraciones (DID, Oráculos, Reputación)**
+```bash
+sudo vim /etc/nginx/sites-available/myapp
+```
 
-- **DID** para vincular identidades verificadas opcionalmente (ONGs, KYC, etc.).
-    
-- **Oráculos** para alimentar decisiones de la IA y actuar como proveedor de datos para otros.
-    
-- **Reputación on-chain** (soulbound tokens) ajusta el comportamiento de la IA y tarifas según historial del usuario.
-    
-- Fusión entre confianza, transparencia y automatización.
-    
+Copy the below configurations, adjust as needed:
+```bash
+server {
+    listen 8081;
+    server_name <your_server_ip>;
 
----
+    root /var/www/myapp;
+    index index.html;
 
-### 🔹 **9. Casos de Uso Innovadores**
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
 
-- **Micropaíses**: intercambios automatizados y estabilidad de monedas.
-    
-- **Remesas y ayuda humanitaria**: optimización de conversiones por IA.
-    
-- **Gobernanza local**: tokens cívicos, presupuestos participativos y votos tokenizados.
-    
-- **Economía IoT**: intercambios autónomos entre dispositivos (vehículos, sensores, etc.).
-    
+### Enable the configurations
 
----
+```bash
+sudo ln -s /etc/nginx/sites-available/myapp /etc/nginx/sites-enabled/
+```
+### Test and reload nginx
 
-### 🔹 **10. Conclusión**
+```bash
+sudo nginx -t
+sudo systemctl reload nginx
+```
 
-**IOTA X** fusiona tecnología DLT sin comisiones con IA avanzada, ofreciendo un DEX seguro, escalable y autónomo. No es solo una herramienta de trading, sino una infraestructura con propósito social y económico. Apuesta por eficiencia, inclusión y colaboración hombre-máquina para construir un futuro financiero más justo.
+Open the app through http://<your_server_ip>:8081
+
+### Conenct to core node server
+
+If you have already launched the node with <node_ip>, try to connect it with our frontend. 
+Open the ConnectLink at the top right of the app, select Connect to Server, add your node url:
+
+```bash
+http://<node_ip>
+```
+Then refresh the page
+
+### Troubleshooting
+Check Nginx error logs if something goes wrong
+
+```bash
+sudo cat /var/log/nginx/error.log
+```
+
