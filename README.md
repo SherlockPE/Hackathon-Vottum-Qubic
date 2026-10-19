@@ -210,10 +210,4 @@ cd frwhitenova && npm run lint
 
 ---
 
-## 👥 Authors & Team
-
-Built with dedication during the **Qubic Hackathon Madrid 2025 (HM25)**:
-
-- **David Español Martinez**
-- **Fabricio López Reyes** ([@SherlockPE](https://github.com/SherlockPE))
 - In collaboration with the **Qubic** and **Vottum** developer community.
